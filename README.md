@@ -90,6 +90,10 @@ Restart all Supervisor programs in the `workers` group:
 
     command=superfsmon /app/devops -g workers
 
+Disable functionality using an environment variable (useful for production):
+
+    command=superfsmon /app/devops celery -e %(CELERY_AUTORELOAD)s
+
 ## Known Issues
 
 * The `--ignore` option is case insensitive. When using `--case-insensitive`

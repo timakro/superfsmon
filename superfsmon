@@ -43,6 +43,11 @@ parser = argparse.ArgumentParser(
         description='Supervisor plugin to watch a directory and restart '
                     'programs on changes')
 
+parser.add_argument('-e', '--enable', metavar='FLAG', type=int,
+        help='disable functionality if flag is not set')
+parser.add_argument('--disable', metavar='FLAG', nargs='?', type=int, const=1,
+        help='disable functionality if flag is set ')
+
 monitor_group = parser.add_argument_group('directory monitoring')
 monitor_group.add_argument('path', metavar='PATH',
         help='directory path to watch for changes')
@@ -100,6 +105,9 @@ def usage_error(msg):
 
 
 def validate_args(args):
+    if args.enable is not None and args.disable is not None:
+        usage_error('argument --enable not allowed with --disable')
+
     if ((args.recognize or args.ignore) and
         (args.recognize_regex or args.ignore_regex)):
         usage_error('arguments --recognize and --ignore not allowed with '
@@ -115,7 +123,10 @@ def validate_args(args):
 
 def handle_term(signum, frame):
     info('terminating')
-    observer.stop()
+    try:
+        observer.stop()
+    except NameError:
+        sys.exit()
 
 
 def requires_restart(proc):
@@ -188,6 +199,12 @@ class RestartPatternMatchingEventHandler(RestartEventHandler,
 if __name__ == '__main__':
     args = parser.parse_args()
     validate_args(args)
+
+    if args.enable == 0 or args.disable:
+        info('functionality disabled, waiting for termination signal')
+        signal.signal(signal.SIGINT,  handle_term)
+        signal.signal(signal.SIGTERM, handle_term)
+        signal.pause()
 
     if args.recognize_regex or args.ignore_regex:
         try:
