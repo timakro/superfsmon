@@ -47,15 +47,18 @@ in production.
 
 ## Command Line Arguments
 
-    usage: superfsmon [-h] [-r PATTERN] [-i PATTERN] [--recognize-regex REGEX]
-                      [--ignore-regex REGEX] [-f] [-c] [-d] [--no-recursion]
-                      [-g GROUP] [-a]
+    usage: superfsmon [-h] [-e FLAG] [--disable [FLAG]] [-r PATTERN] [-i PATTERN]
+                      [--recognize-regex REGEX] [--ignore-regex REGEX] [-f] [-c]
+                      [-d] [--no-recursion] [-g GROUP] [-a]
                       PATH [PROG [PROG ...]]
 
-    Supervisor plugin to watch a directory and restart programs on changes.
+    Supervisor plugin to watch a directory and restart programs on changes
 
     optional arguments:
       -h, --help            show this help message and exit
+      -e FLAG, --enable FLAG
+                            disable functionality if flag is not set
+      --disable [FLAG]      disable functionality if flag is set
 
     directory monitoring:
       PATH                  directory path to watch for changes
