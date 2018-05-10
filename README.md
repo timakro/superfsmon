@@ -95,7 +95,7 @@ Restart all Supervisor programs in the `workers` group:
 
 Disable functionality using an environment variable (useful for production):
 
-    command=superfsmon /app/devops celery -e %(CELERY_AUTORELOAD)s
+    command=superfsmon /app/devops celery -e %(ENV_CELERY_AUTORELOAD)s
 
 ## Known Issues
 
