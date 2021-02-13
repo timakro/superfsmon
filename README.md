@@ -103,12 +103,3 @@ Disable functionality using an environment variable (useful for production):
   it is case sensitive. This is caused by a [bug in Watchdog][Watchdog Issue].
 
 [Watchdog Issue]: https://github.com/gorakhargosh/watchdog/issues/442
-
-## License
-
-Copyright (C) 2018 Tim Schumacher
-
-License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>.
-
-This is free software: you are free to change and redistribute it.
-There is NO WARRANTY, to the extent per‐mitted by law.
