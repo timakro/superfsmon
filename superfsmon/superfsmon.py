@@ -197,6 +197,7 @@ class RestartPatternMatchingEventHandler(RestartEventHandler,
 
 
 def main():
+    global args
     args = parser.parse_args()
     validate_args(args)
 
@@ -228,7 +229,8 @@ def main():
     observer.schedule(event_handler, args.path, recursive=args.recursive)
 
     try:
-        global rpc = childutils.getRPCInterface(os.environ)
+        global rpc
+        rpc = childutils.getRPCInterface(os.environ)
     except KeyError as exc:
         error('missing environment variable ' + str(exc))
 
