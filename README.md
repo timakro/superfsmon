@@ -28,22 +28,12 @@ You can use multiple instances of Superfsmon to control different programs.
 
 ## Installation
 
-### Python 2
-
     pip install superfsmon
 
 ### Python 3
 
-This script requires Supervisor which [is not yet available for Python
-3][Supervisor Python 3]. To be able to install superfsmon without errors you
-need to install the development version of Supervisor from the GitHub
-repository first. The development version may not work reliably, don't use it
-in production.
-
-    pip install git+https://github.com/Supervisor/supervisor
-    pip install superfsmon
-
-[Supervisor Python 3]: https://github.com/Supervisor/supervisor/issues/510
+This script requires Supervisor >= 4.0.0, released on April 26, 2019.
+That, in turn, requires python >= 3.4.
 
 ## Command Line Arguments
 

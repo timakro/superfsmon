@@ -196,7 +196,8 @@ class RestartPatternMatchingEventHandler(RestartEventHandler,
     pass
 
 
-if __name__ == '__main__':
+def main():
+    global args
     args = parser.parse_args()
     validate_args(args)
 
@@ -228,6 +229,7 @@ if __name__ == '__main__':
     observer.schedule(event_handler, args.path, recursive=args.recursive)
 
     try:
+        global rpc
         rpc = childutils.getRPCInterface(os.environ)
     except KeyError as exc:
         error('missing environment variable ' + str(exc))
@@ -244,3 +246,6 @@ if __name__ == '__main__':
 
     while observer.is_alive():
         observer.join(1)
+
+if __name__ == '__main__':
+    main()
