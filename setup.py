@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='superfsmon',
-      version='1.2.1',
+      version='1.2.2',
       license='MIT',
       description='Supervisor plugin to watch a directory and restart '
                   'programs on changes',
