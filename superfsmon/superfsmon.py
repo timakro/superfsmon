@@ -117,8 +117,15 @@ def requires_restart(proc):
     statename = proc['statename']
     pid = proc['pid']
 
+    programs_regex = f'^(({")|(".join(args.program)}))$' if args.program else None
+    groups_regex = f'^(({")|(".join(args.group)}))$' if args.group else None
+
     return ((statename == 'STARTING' or statename == 'RUNNING') and
-            (args.any or name in args.program or group in args.group) and
+            (
+              args.any
+              or (programs_regex and re.search(programs_regex, name))
+              or (groups_regex and re.search(groups_regex, group))
+            ) and
             pid != os.getpid())
 
 
