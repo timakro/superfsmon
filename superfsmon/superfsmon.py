@@ -164,7 +164,7 @@ def commence_restart():
 class RestartEventHandler(object):
 
     def on_any_event(self, event):
-        if event.event_type == "opened":
+        if event.event_type == "opened" or event.event_type == "closed_no_write":
             return
 
         thread = threading.Thread(target=commence_restart)
